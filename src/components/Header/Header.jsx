@@ -9,7 +9,7 @@ function Header() {
     <div className="header flex justify-center">
       <div className="flex flex-row items-center justify-between max-w-screen-2xl w-11/12 pt-6">
         <ProfileButton />
-        <img src={sneakerLogo} alt="logo" className="sneaker-logo w-20 ml-56" />
+        <img src={sneakerLogo} alt="logo" className="sneaker-logo w-16 md:ml-56 ml-10"/>
         <div className="flex flex-row gap-4 items-center">
           <SearchInput />
           <div className='flex gap-4'>
