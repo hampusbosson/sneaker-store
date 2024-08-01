@@ -1,5 +1,5 @@
-import sneakerLogo from "../assets/images/sneaker-logo.png";
-import icons from "../assets/icons/icons";
+import sneakerLogo from "../../assets/images/sneaker-logo.png";
+import icons from "../../assets/icons/icons";
 
 function Header() {
   return (
