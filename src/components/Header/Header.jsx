@@ -3,10 +3,12 @@ import SearchInput from './SearchInput';
 import WatchListButton from './WatchListButton';
 import CartButton from './CartButton'
 import HomeButton from './HomeButton';
+import HeaderContentList from './HeaderContentList/HeaderContentList';
+
 
 function Header() {
   return (
-    <div className="header flex justify-center">
+    <div className="header flex flex-col items-center gap-12">
       <div className="flex flex-row items-center justify-between max-w-screen-2xl w-11/12 pt-6">
         <ProfileButton />
         <HomeButton />
@@ -18,6 +20,7 @@ function Header() {
           </div>
         </div>
       </div>
+      <HeaderContentList />
     </div>
   );
 }

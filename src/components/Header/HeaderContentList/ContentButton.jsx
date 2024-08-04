@@ -1,6 +1,10 @@
-function ContentButton() {
+function ContentButton({name}) {
     return (
-        <div></div>
+        <div>
+            <button className="text-black text-lg">
+                {name}
+            </button>
+        </div>
     );
 }
 
