@@ -1,12 +1,10 @@
-import { useState, useEffect } from "react";
 import CarouselButton from "./CarouselButton";
-import { getMostPopularSneakers } from "../../api";
 import Slider from "react-slick";
 import icons from "../../assets/icons/icons";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-function NewArrivalsContainer() {
+function CarouselContainer({title, data, error, loading}) {
   function SampleNextArrow(props) {
     const { className, style, onClick } = props;
     return (
@@ -43,23 +41,6 @@ function NewArrivalsContainer() {
     prevArrow: <SamplePrevArrow />,
   };
 
-  const [sneakers, setSneakers] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    getMostPopularSneakers()
-      .then((data) => {
-        console.log(data);
-        setSneakers(data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        setError(error);
-        setLoading(false);
-      });
-  }, []);
-
   if (loading) {
     return <div className="text-center mt-4">Loading...</div>;
   }
@@ -74,11 +55,11 @@ function NewArrivalsContainer() {
 
   return (
     <div className="flex flex-col justify-center">
-      <h2 className="text-black ml-48 text-4xl font-bold">New Arrivals</h2>
+      <h2 className="text-black ml-48 text-4xl font-bold">{title}</h2>
       <div>
         <div className="w-full px-40">
           <Slider {...sliderSettings}>
-            {sneakers.map((sneaker) => (
+            {data.map((sneaker) => (
               <div key={sneaker._id} className="p-8">
                 <CarouselButton
                   imgSrc={sneaker.thumbnail}
@@ -96,4 +77,4 @@ function NewArrivalsContainer() {
   );
 }
 
-export default NewArrivalsContainer;
+export default CarouselContainer;
