@@ -1,12 +1,19 @@
-function CarouselButton({ imgSrc, alt, brand, name, colorWay, price }) {
+import icons from "../../assets/icons/icons";
+
+function CarouselButton({ imgSrc, alt, brand, name, price }) {
     return (
       <div>
-        <button className={`w-full h-full`}>
+        <button className="w-full flex flex-col shadow-lg gap-6 px-6 pb-1 pt-6 bg-white rounded-lg">
           <img src={imgSrc} alt={alt} className="w-full h-full"/>
-            <p className="text-black">{brand}</p>
-            <p className="text-black">{name}</p>
-            <p className="text-black">{price}</p>
-          <div>
+          <div className="flex justify-between w-full">
+            <div className="flex flex-col items-start text-left min-h-24">
+                <p className="text-gray-700 text-lg">{brand}</p>
+                <p className="text-black font-bold text-sm tracking-tight">{name}</p>
+                <p className="text-black text-lg mt-1">{`$${price}`}</p>
+            </div>
+            <button className="self-start mt-1">
+                {icons.plusIcon}
+            </button>
           </div>
         </button>
       </div>
