@@ -8,7 +8,7 @@ import HeaderContentList from './HeaderContentList/HeaderContentList';
 
 function Header() {
   return (
-    <div className="header flex flex-col items-center gap-8 shadow pb-6">
+    <div className="header flex flex-col items-center gap-8 pb-6 shadow">
       <div className="flex flex-row items-center justify-between max-w-screen-2xl w-11/12 pt-6">
         <ProfileButton />
         <HomeButton />
