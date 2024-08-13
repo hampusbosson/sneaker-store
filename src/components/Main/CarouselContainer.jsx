@@ -32,7 +32,7 @@ function CarouselContainer({title, data, error, loading}) {
   }
 
   function HideArrows(props) {
-    const { className, style, onClick } = props;
+    const { className, style } = props;
     return (
       <div
         className={className}
@@ -92,7 +92,7 @@ function CarouselContainer({title, data, error, loading}) {
         <div className="w-full">
           <Slider {...sliderSettings}>
             {data.map((sneaker) => (
-              <div key={sneaker._id} className="p-6">
+              <div key={sneaker._id} className="p-4">
                 <CarouselButton
                   imgSrc={sneaker.thumbnail}
                   alt={sneaker.shoeName}
