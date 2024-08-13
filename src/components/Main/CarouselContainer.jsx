@@ -10,7 +10,7 @@ function CarouselContainer({title, data, error, loading}) {
     return (
       <div
         className={className}
-        style={{ ...style, display: "block", marginTop: '-40px' }}
+        style={{ ...style, display: "block", marginTop: '-40px', marginRight: '10px' }}
         onClick={onClick}
       >
         {icons.chevronRight}
@@ -31,6 +31,17 @@ function CarouselContainer({title, data, error, loading}) {
     );
   }
 
+  function HideArrows(props) {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{ ...style, display: "hidden" }}
+      >
+      </div>
+    );
+  }
+
   const sliderSettings = {
     dots: false,
     infinite: true,
@@ -39,6 +50,27 @@ function CarouselContainer({title, data, error, loading}) {
     slidesToScroll: 1,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: false
+        }
+      },
+      {
+        breakpoint: 700,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2,
+          nextArrow: <HideArrows />,
+          prevArrow: <HideArrows />,
+        }
+      },
+    ]
   };
 
   if (loading) {
@@ -54,13 +86,13 @@ function CarouselContainer({title, data, error, loading}) {
   }
 
   return (
-    <div className="flex flex-col justify-center">
-      <h2 className="text-black ml-48 text-4xl font-bold">{title}</h2>
+    <div className="flex flex-col justify-center 2xl:px-44 sm:px-8 px-0 2xl:mb-0 sm:-mb-8 -mb-8">
+      <h2 className="text-black 2xl:ml-[2rem] ml-[2rem] 2xl:text-4xl lg:text-3xl text-2xl font-bold">{title}</h2>
       <div>
-        <div className="w-full px-40">
+        <div className="w-full">
           <Slider {...sliderSettings}>
             {data.map((sneaker) => (
-              <div key={sneaker._id} className="p-8">
+              <div key={sneaker._id} className="p-6">
                 <CarouselButton
                   imgSrc={sneaker.thumbnail}
                   alt={sneaker.shoeName}
