@@ -20,10 +20,28 @@ function ProductPage() {
   const { state } = useLocation();
   //const { item } = useParams;
 
-  const [selectedSize, setSelectedSize] = useState('7');
+  const [selectedSize, setSelectedSize] = useState("7");
+  const [aboutIsExpanded, setAboutIsExpanded] = useState(null);
+  const [detailsIsExpanded, setDetailsIsExpanded] = useState(null);
 
   const handleSizeClick = (size) => {
     setSelectedSize(size);
+  };
+
+  const handleAboutSection = () => {
+    if (
+      aboutIsExpanded === true
+        ? setAboutIsExpanded(false)
+        : setAboutIsExpanded(true)
+    );
+  };
+
+  const handleDetailsSection = () => {
+    if (
+        detailsIsExpanded === true
+          ? setDetailsIsExpanded(false)
+          : setDetailsIsExpanded(true)
+      );
   };
 
   return (
@@ -33,12 +51,12 @@ function ProductPage() {
           <img
             src={state.imgSrc}
             alt={state.alt}
-            className="w-[40rem] shadow"
+            className="w-[40rem] h-[27rem] shadow"
           />
           <div className="flex flex-col w-[27rem]">
             <div className="flex justify-between">
-                <p className="text-gray-800 text-xl">{state.brand}</p>
-                {icons.productHeartIcon}
+              <p className="text-gray-800 text-xl">{state.brand}</p>
+              {icons.productHeartIcon}
             </div>
             <div className="mt-2">
               <p className="text-3xl font-bold">{state.name}</p>
@@ -58,15 +76,23 @@ function ProductPage() {
                 />
               ))}
             </div>
-            <button className="bg-black text-white mt-5 h-16 font-semibold text-lg">Add to cart</button>
-            <button className="flex justify-between font-bold text-lg mt-6 border-b border-gray-400 pb-4">
-                <p>ABOUT PRODUCT</p>
-                {icons.productPlusIcon}
+            <button className="bg-black text-white mt-5 h-16 font-semibold text-lg">
+              Add to cart
             </button>
-            <button className="flex justify-between font-bold text-lg mt-4 border-b border-gray-400 pb-4">
-                <p>PRODUCT DETAILS</p>
-                {icons.productPlusIcon}
+            <button
+              className="flex justify-between font-bold text-lg mt-6 border-b border-gray-400 pb-4"
+              onClick={handleAboutSection}
+            >
+              <p>ABOUT PRODUCT</p>
+              {aboutIsExpanded ? icons.productMinusIcon : icons.productPlusIcon}
             </button>
+            {aboutIsExpanded && <div>hello world</div>}
+            <button className="flex justify-between font-bold text-lg mt-4 border-b border-gray-400 pb-4"
+            onClick={handleDetailsSection}>
+              <p>PRODUCT DETAILS</p>
+              {detailsIsExpanded ? icons.productMinusIcon : icons.productPlusIcon}
+            </button>
+            {detailsIsExpanded && <div>hello world</div>}
           </div>
         </div>
       </div>
