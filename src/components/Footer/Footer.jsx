@@ -1,9 +1,9 @@
+import icons from "../../assets/icons/icons";
+
 function Info() {
   return (
     <div>
-      <div>
         <h1>INFO</h1>
-      </div>
       <div>
         <p>Contact Us</p>
         <p>Releases</p>
@@ -18,9 +18,7 @@ function Info() {
 function Policies() {
   return (
     <div>
-      <div>
         <h1>POLICIES</h1>
-      </div>
       <div>
         <p>Help Center</p>
         <p>Privacy Policy</p>
@@ -36,7 +34,11 @@ function Policies() {
 function Socials() {
   return (
     <div>
-
+        <h1>OUR SOCIALS</h1>
+        <div className="flex">
+            {icons.instagramIcon}
+            {icons.facebookIcon}
+        </div>
     </div>
   );
 }
@@ -44,15 +46,24 @@ function Socials() {
 function Newsletter() {
   return (
     <div>
-
+        <h1>SUBSCRIBE TO OUR NEWSLETTER</h1>
+        <div>
+            <input type="text" placeholder="Email Address"/>
+            <button>Subscribe</button>
+        </div>
     </div>
   );
 }
 
 function Footer() {
   return (
-    <div>
-        
+    <div className="bg-black mt-12 flex flex-row justify-around p-16">
+        <div className="flex gap-16">
+            <Info />
+            <Policies />
+            <Socials />
+        </div>
+        <Newsletter />
     </div>
   )
 }
