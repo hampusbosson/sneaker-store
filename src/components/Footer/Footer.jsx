@@ -59,13 +59,13 @@ function Newsletter() {
 
 function Footer() {
   return (
-    <div className="bg-stone-950 mt-12 pt-12 pb-24 grid lg:grid-cols-5 lg:grid-rows-1">
-        <div className="lg:col-span-3 flex justify-evenly w-full ">
+    <div className="bg-stone-950 mt-12 pt-12 pb-24 grid lg:grid-cols-10 lg:grid-rows-1 lg:pl-12">
+        <div className="lg:col-span-5 flex justify-around w-full ">
             <Info />
             <Policies />
             <Socials />
         </div>
-        <div className="lg:col-span-2 flex lg:ml-32 lg:mt-0 lg:justify-start justify-center mt-16">
+        <div className="lg:col-span-5 flex lg:ml-32 lg:mt-0 lg:justify-center justify-evenly mt-16">
             <Newsletter />
         </div>
     </div>
