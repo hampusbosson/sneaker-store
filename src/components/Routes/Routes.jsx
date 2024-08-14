@@ -1,5 +1,6 @@
 import App from "../../App";
 import ErrorPage from "./ErrorPage";
+import ProductPage from "./ProductPage/ProductPage";
 
 const routes = [
   {
@@ -8,7 +9,8 @@ const routes = [
     errorElement: <ErrorPage />,
   },
   {
-    path: "product/:item"
+    path: "product/:item",
+    element: <ProductPage />,
   }
 ];
 
