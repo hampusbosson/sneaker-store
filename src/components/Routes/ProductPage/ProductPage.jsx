@@ -32,7 +32,7 @@ function ProductPage() {
     if (
       aboutIsExpanded === true
         ? setAboutIsExpanded(false)
-        : setAboutIsExpanded(true)
+        : setAboutIsExpanded(true), setDetailsIsExpanded(false)
     );
   };
 
@@ -40,20 +40,20 @@ function ProductPage() {
     if (
         detailsIsExpanded === true
           ? setDetailsIsExpanded(false)
-          : setDetailsIsExpanded(true)
+          : setDetailsIsExpanded(true), setAboutIsExpanded(false)
       );
   };
 
   return (
     <Layout>
       <div className="flex flex-col justify-center items-center text-black">
-        <div className="flex flex-row 2xl:w-[50%] w-[80%] justify-between">
+        <div className="lg:flex lg:flex-row lg:gap-20 lg:justify-between grid gap-8">
           <img
             src={state.imgSrc}
             alt={state.alt}
-            className="w-[40rem] h-[27rem] shadow"
+            className="w-[26rem] h-[17rem] shadow xl:w-[38rem] xl:h-[27rem] sm:w-[33rem] sm:h-[23rem]"
           />
-          <div className="flex flex-col w-[27rem]">
+          <div className="flex flex-col w-full">
             <div className="flex justify-between">
               <p className="text-gray-800 text-xl">{state.brand}</p>
               {icons.productHeartIcon}
@@ -86,13 +86,23 @@ function ProductPage() {
               <p>ABOUT PRODUCT</p>
               {aboutIsExpanded ? icons.productMinusIcon : icons.productPlusIcon}
             </button>
-            {aboutIsExpanded && <div>hello world</div>}
+            {aboutIsExpanded && <div className="font-medium text-lg mt-2 mb-4 lg:max-w-[21rem] md:max-w-[30rem] sm:max-w-[30rem] max-w-[26rem]">{state.description}</div>}
             <button className="flex justify-between font-bold text-lg mt-4 border-b border-gray-400 pb-4"
             onClick={handleDetailsSection}>
               <p>PRODUCT DETAILS</p>
               {detailsIsExpanded ? icons.productMinusIcon : icons.productPlusIcon}
             </button>
-            {detailsIsExpanded && <div>hello world</div>}
+            {detailsIsExpanded && <div>
+              <ul>
+                <li>Manufacturer: </li>
+                <li>Weight: 1.20 KG</li>
+                <li>Generic Name: Shoe</li>
+                <li>Unit of Measurement: 1 pair</li>
+                <li>Release Date: </li>
+                <li>Colorway: </li>
+                <li>Article Code: </li>
+              </ul>
+              </div>}
           </div>
         </div>
       </div>
