@@ -87,7 +87,7 @@ function CarouselContainer({title, data, error, loading}) {
 
   return (
     <div className="flex flex-col justify-center 2xl:px-44 sm:px-8 px-0 2xl:mb-0 sm:-mb-8 -mb-8">
-      <h2 className="text-black 2xl:ml-[2rem] ml-[2rem] 2xl:text-4xl lg:text-3xl text-2xl font-bold">{title}</h2>
+      <h2 className="text-black 2xl:ml-[2rem] ml-[2rem] 2xl:text-4xl text-3xl font-bold">{title}</h2>
       <div>
         <div className="w-full">
           <Slider {...sliderSettings}>
