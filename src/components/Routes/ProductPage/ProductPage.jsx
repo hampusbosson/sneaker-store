@@ -93,14 +93,34 @@ function ProductPage() {
               {detailsIsExpanded ? icons.productMinusIcon : icons.productPlusIcon}
             </button>
             {detailsIsExpanded && <div>
-              <ul>
-                <li>Manufacturer: {state.brand}</li>
-                <li>Weight: 1.20 KG</li>
-                <li>Generic Name: Shoe</li>
-                <li>Unit of Measurement: 1 pair</li>
-                <li>Release Date: </li>
-                <li>Colorway: </li>
-                <li>Article Code: </li>
+              <ul className="text-lg mt-2">
+                <li className="flex gap-1">
+                  <div className="font-bold">Manufacturer:</div>
+                  <div>{state.brand}</div>
+                </li>
+                <li className="flex gap-1">
+                  <div className="font-bold">Weight:</div>
+                  <div>1.20 KG</div>
+                </li>
+                <li className="flex gap-1">
+                  <div className="font-bold">Generic Name:</div>
+                  <div>Shoe</div>
+                </li>
+                <li className="flex gap-1">
+                  <div className="font-bold">Unit of Measurement:</div>
+                  <div>1 pair</div>
+                </li>
+                <li className="flex gap-1">
+                  <div className="font-bold">Release Date:</div>
+                  <div>{state.releaseDate}</div>
+                </li>
+                <li className="flex gap-1">
+                  <div className="font-bold">Colorway:</div>
+                  <div>{state.colorWay}</div>
+                </li><li className="flex gap-1">
+                  <div className="font-bold">Article Code:</div>
+                  <div>{state.articleCode}</div>
+                </li>
               </ul>
               </div>}
           </div>
