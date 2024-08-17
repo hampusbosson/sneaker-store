@@ -34,6 +34,7 @@ function MainContent() {
     useEffect(() => {
         searchSneakers("2024", 10)
           .then((data) => {
+            console.log(data)
             setRecommendedSneakers(data);
             setRecommendedLoading(false);
           })
@@ -44,7 +45,7 @@ function MainContent() {
       }, []);
 
       useEffect(() => {
-        searchSneakers("new balance", 4)
+        searchSneakers("new balance 574", 4)
           .then((data) => {
             setNewBalanceSneakers(data);
             setNewBalanceLoading(false);
