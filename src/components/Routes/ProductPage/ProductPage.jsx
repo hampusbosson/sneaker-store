@@ -178,9 +178,7 @@ function YouMayLikeSection({shoeName }) {
 }
 
 function ProductPage() {
-
   const { state } = useLocation();
-  //const { item } = useParams;
 
   const [selectedSize, setSelectedSize] = useState("7");
   const [aboutIsExpanded, setAboutIsExpanded] = useState(null);
@@ -191,21 +189,13 @@ function ProductPage() {
   };
 
   const handleAboutSection = () => {
-    if (
-      (aboutIsExpanded === true
-        ? setAboutIsExpanded(false)
-        : setAboutIsExpanded(true),
-      setDetailsIsExpanded(false))
-    );
+    setAboutIsExpanded((prev) => !prev);
+    setDetailsIsExpanded(false);
   };
 
   const handleDetailsSection = () => {
-    if (
-      (detailsIsExpanded === true
-        ? setDetailsIsExpanded(false)
-        : setDetailsIsExpanded(true),
-      setAboutIsExpanded(false))
-    );
+    setDetailsIsExpanded((prev) => !prev);
+    setAboutIsExpanded(false);
   };
 
   return (
@@ -220,7 +210,7 @@ function ProductPage() {
           handleAboutSection={handleAboutSection}
           handleDetailsSection={handleDetailsSection}
         />
-        <YouMayLikeSection shoeName={state.brand} shoeID={state._id}/>
+        <YouMayLikeSection shoeName={state.brand} shoeID={state._id} />
       </div>
     </Layout>
   );
