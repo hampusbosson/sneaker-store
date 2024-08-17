@@ -23,7 +23,7 @@ app.get('/api/sneakers', (req, res) => {
 
 app.get('/api/sneakers/search', (req, res) => {
   const keyword = req.query.keyword || 'Yeezy';
-  const limit = 1;
+  const limit = parseInt(req.query.limit, 10) || 25; // Change the default limit to 20 or any desired number
 
   sneaks.getProducts(keyword, limit, (err, products) => {
     if (err) {
