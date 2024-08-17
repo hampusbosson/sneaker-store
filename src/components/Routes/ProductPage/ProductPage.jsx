@@ -94,7 +94,7 @@ function ProductPage() {
             </button>
             {detailsIsExpanded && <div>
               <ul>
-                <li>Manufacturer: </li>
+                <li>Manufacturer: {state.brand}</li>
                 <li>Weight: 1.20 KG</li>
                 <li>Generic Name: Shoe</li>
                 <li>Unit of Measurement: 1 pair</li>

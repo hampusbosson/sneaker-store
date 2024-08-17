@@ -34,6 +34,7 @@ function FillerSection({ data, error, loading }) {
                 brand={sneaker.brand}
                 name={sneaker.make}
                 price={sneaker.lowestResellPrice.stockX}
+                description={sneaker.description}
               />
             </div>
           ))}

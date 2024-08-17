@@ -1,11 +1,11 @@
 import icons from "../../assets/icons/icons";
 import { useNavigate } from "react-router-dom";
 
-function CarouselButton({ imgSrc, alt, brand, name, price }) {
+function CarouselButton({ imgSrc, alt, brand, name, price, description}) {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    const productData = { imgSrc, alt, brand, name, price };
+    const productData = { imgSrc, alt, brand, name, price, description };
     navigate(`/product/${name}`, { state: productData });
   };
 
