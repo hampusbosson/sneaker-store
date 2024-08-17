@@ -10,7 +10,7 @@ export const getMostPopularSneakers = async () => {
   };
   
   // Search for sneakers by keyword
-  export const searchSneakers = async (keyword, limit = 10) => {
+  export const searchSneakers = async (keyword, limit) => {
     const response = await fetch(`http://localhost:5001/api/sneakers/search?keyword=${keyword}&limit=${limit}`);
     if (!response.ok) {
       throw new Error('Network response was not ok');
