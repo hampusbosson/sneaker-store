@@ -156,7 +156,7 @@ function YouMayLikeSection({shoeName }) {
       <h1 className="text-start ml-4 2xl:text-4xl text-3xl font-bold">
         You may also like
       </h1>
-      <div className="grid lg:grid-cols-4 lg:grid-rows-1 md:grid-cols-2 md:grid-rows-2">
+      <div className="grid lg:grid-cols-4 lg:grid-rows-1 md:grid-cols-2 md:grid-rows-2 grid-cols-2 grid-rows-2">
       {recommendedSneakers.map((sneaker) => (
         <div key={sneaker._id} className="p-4">
           <CarouselButton
