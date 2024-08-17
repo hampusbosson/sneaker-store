@@ -1,7 +1,10 @@
 import Layout from "../../../Layout";
 import { useLocation /*useParams*/ } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import icons from "../../../assets/icons/icons";
+import { searchSneakers } from "../../../api";
+import CarouselButton from "../../Main/CarouselButton";
+
 
 function ProductShowcase({
   state,
@@ -12,6 +15,19 @@ function ProductShowcase({
   handleAboutSection,
   handleDetailsSection,
 }) {
+  function SizeButton({ size, isSelected, onClick }) {
+    return (
+      <button
+        className={`border-black border w-[3.8rem] h-10 ${
+          isSelected ? "bg-black text-white" : "bg-white text-black"
+        }`}
+        onClick={onClick}
+      >
+        {size}
+      </button>
+    );
+  }
+
   return (
     <div className="lg:flex lg:flex-row lg:gap-20 lg:justify-between grid gap-8">
       <img
@@ -103,20 +119,66 @@ function ProductShowcase({
   );
 }
 
-function SizeButton({ size, isSelected, onClick }) {
+function getRandomSneakers(sneakers, count) {
+  const shuffled = sneakers.sort(() => 0.5 - Math.random());
+  return shuffled.slice(0, count);
+}
+
+function YouMayLikeSection({shoeName }) {
+  const [recommendedSneakers, setRecommendedSneakers] = useState([]);
+  const [recommendedLoading, setRecommendedLoading] = useState(true);
+  const [recommendedError, setRecommendedError] = useState(null);
+
+  useEffect(() => {
+    searchSneakers(shoeName, 15)
+      .then((data) => {
+        const randomSneakers = getRandomSneakers(data, 4);
+        setRecommendedSneakers(randomSneakers);
+        setRecommendedLoading(false);
+      })
+      .catch((error) => {
+        setRecommendedError(error);
+        setRecommendedLoading(false);
+      });
+  }, [shoeName]);
+
+  if (recommendedLoading) {
+    return <div>Loading...</div>
+  }
+
+  if (recommendedError) {
+    return <div>Oops! Couldnt fetch data.</div>
+  }
+
+
   return (
-    <button
-      className={`border-black border w-[3.8rem] h-10 ${
-        isSelected ? "bg-black text-white" : "bg-white text-black"
-      }`}
-      onClick={onClick}
-    >
-      {size}
-    </button>
+    <div className="lg:w-[80%] w-[90%]">
+      <h1 className="text-start ml-4 2xl:text-4xl text-3xl font-bold">
+        You may also like
+      </h1>
+      <div className="grid lg:grid-cols-4 lg:grid-rows-1 md:grid-cols-2 md:grid-rows-2">
+      {recommendedSneakers.map((sneaker) => (
+        <div key={sneaker._id} className="p-4">
+          <CarouselButton
+            imgSrc={sneaker.thumbnail}
+            alt={sneaker.shoeName}
+            brand={sneaker.brand}
+            name={sneaker.make}
+            price={sneaker.lowestResellPrice.stockX}
+            description={sneaker.description}
+            releaseDate={sneaker.releaseDate}
+            colorWay={sneaker.colorway}
+            articleCode={sneaker.styleID}
+          />
+        </div>
+      ))}
+      </div>
+    </div>
   );
 }
 
 function ProductPage() {
+
   const { state } = useLocation();
   //const { item } = useParams;
 
@@ -148,7 +210,7 @@ function ProductPage() {
 
   return (
     <Layout>
-      <div className="flex flex-col justify-center items-center text-black">
+      <div className="flex flex-col gap-36 justify-center items-center text-black">
         <ProductShowcase
           state={state}
           selectedSize={selectedSize}
@@ -158,6 +220,7 @@ function ProductPage() {
           handleAboutSection={handleAboutSection}
           handleDetailsSection={handleDetailsSection}
         />
+        <YouMayLikeSection shoeName={state.brand} shoeID={state._id}/>
       </div>
     </Layout>
   );
