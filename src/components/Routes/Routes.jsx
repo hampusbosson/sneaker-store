@@ -1,6 +1,7 @@
 import App from "../../App";
 import ErrorPage from "./ErrorPage";
 import ProductPage from "./ProductPage/ProductPage";
+import Collections from "./Collections/Collections"
 
 const routes = [
   {
@@ -11,6 +12,10 @@ const routes = [
   {
     path: "product/:item",
     element: <ProductPage />,
+  },
+  {
+    path: "collections/:collection",
+    element: <Collections />,
   }
 ];
 
