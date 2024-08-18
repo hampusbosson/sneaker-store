@@ -3,7 +3,7 @@ import Footer from "./components/Footer/Footer";
 
 function Layout({ children }) {
     return (
-      <div>
+      <div className="flex flex-col justify-between h-screen">
         <Header />
         <div className="mt-10">{children}</div>
         <Footer />
