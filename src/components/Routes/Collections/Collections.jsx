@@ -1,6 +1,6 @@
 import Layout from "../../../Layout";
 
-function ProductGallery() {
+function Collections() {
     return (
         <Layout>
             <div>
@@ -10,4 +10,4 @@ function ProductGallery() {
     )
 }
 
-export default ProductGallery;
+export default Collections;
