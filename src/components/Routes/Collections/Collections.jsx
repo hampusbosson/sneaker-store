@@ -1,10 +1,13 @@
 import Layout from "../../../Layout";
+import { useLocation } from "react-router-dom";
 
 function Collections() {
+    const { state } = useLocation();
+
     return (
         <Layout>
-            <div>
-                hello world
+            <div className="text-black">
+                {state.title}
             </div>
         </Layout>
     )
