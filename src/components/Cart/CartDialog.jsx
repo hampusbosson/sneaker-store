@@ -12,7 +12,7 @@ function CartDialog({ isOpen, onClose }) {
         style={{ inset: "0 0 0 auto" }}
       >
         <div className="p-4 flex justify-between">
-          <h2>Your Cart</h2>
+          <h2 className="text-2xl font-bold">Your Cart</h2>
           {/* Cart items go here */}
           <button onClick={onClose}>{icons.closeIcon}</button>
         </div>
