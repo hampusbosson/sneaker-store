@@ -14,10 +14,10 @@ function CartDialog({ isOpen, onClose }) {
       <div className="fixed inset-0 bg-black opacity-50 z-10"></div>
       <dialog
         open
-        className="fixed top-0 right-0 h-screen w-[25rem] z-10 bg-white shadow-lg m-0"
+        className="fixed top-0 right-0 h-screen w-[29rem] z-10 bg-white shadow-lg m-0"
         style={{ inset: "0 0 0 auto" }}
       >
-        <div className="flex flex-col p-4">
+        <div className="flex flex-col p-4 gap-6">
           <div className="flex justify-between">
             <h2 className="text-2xl font-bold">Your Cart</h2>
             <button onClick={onClose}>{icons.closeIcon}</button>
@@ -27,7 +27,10 @@ function CartDialog({ isOpen, onClose }) {
               key={index}
               brand={item.brand} 
               name={item.name} 
+              size={item.size}
               price={item.price} 
+              img={item.img}
+              alt={item.imgAlt}
             />
           ))}
         </div>
