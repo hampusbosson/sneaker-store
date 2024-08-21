@@ -19,6 +19,9 @@ function ProductShowcase({
   const { cartItems, setCartItems, totalPrice, setTotalPrice } =
     useContext(CartContext);
 
+  let sneakerAmount = 1; 
+
+
   function SizeButton({ size, isSelected, onClick }) {
     return (
       <button
@@ -32,16 +35,15 @@ function ProductShowcase({
     );
   }
 
-  const [sneakerAmount, setSneakerAmount] = useState(1);
 
-  const addToCart = (name) => {
-    const existingItem = cartItems.find(item => item.name === name && item.size === selectedSize);
+  const addToCart = (articleCode) => {
+    const existingItem = cartItems.find(item => item.articleCode === articleCode && item.size === selectedSize);
   
     if (existingItem) {
       // If the item already exists, update its amount
       const updatedCartItems = cartItems.map(item => 
-        item.name === name && item.size === selectedSize
-          ? { ...item, amount: item.amount + 1 }
+        item.articleCode === articleCode && item.size === selectedSize
+          ? { ...item, amount: item.amount + sneakerAmount }
           : item
       );
       setCartItems(updatedCartItems);
@@ -55,6 +57,7 @@ function ProductShowcase({
         img: state.imgSrc,
         imgAlt: state.alt,
         amount: sneakerAmount,
+        articleCode: state.articleCode
       };
       setCartItems([...cartItems, product]);
     }
@@ -95,7 +98,7 @@ function ProductShowcase({
         </div>
         <button
           className="bg-black text-white mt-5 h-16 font-semibold text-lg"
-          onClick={() => addToCart(state.name)}
+          onClick={() => addToCart(state.articleCode)}
         >
           Add to cart
         </button>

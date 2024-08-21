@@ -1,24 +1,37 @@
 import icons from "../../assets/icons/icons";
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
+import { CartContext } from "../CartProvider";
 
 function CartItem({ brand, name, size, price, img, alt, amount }) {
-  const [productCounter, setProductCounter] = useState("0");
+  const { cartItems, setCartItems, setTotalPrice } = useContext(CartContext);
+
+  const [productCounter, setProductCounter] = useState(amount);
+
+  useEffect(() => {
+    // Whenever productCounter changes, update the cart state
+    const updatedCartItems = cartItems.map(item =>
+      item.name === name && item.size === size
+        ? { ...item, amount: productCounter }
+        : item
+    );
+    setCartItems(updatedCartItems);
+  }, [productCounter, name, size, cartItems, setCartItems]);
 
   const increaseProductCounter = () => {
-    let productCount = productCounter;
-    productCount++;
-
-    setProductCounter(productCount);
+    setProductCounter(prevCount => prevCount + 1);
+    setTotalPrice(prevTotal => prevTotal + price);
   };
 
   const decreaseProductCounter = () => {
-    let productCount = productCounter;
-    if (productCount > 0) {
-      productCount--;
+    if (productCounter > 0) {
+      setProductCounter(prevCount => prevCount - 1);
+      setTotalPrice(prevTotal => prevTotal - price);
     }
-
-    setProductCounter(productCount);
   };
+
+  if (productCounter === 0) {
+    return null; // Return null to hide the item when the amount is 0
+  }
 
   return (
     <div className="w-full border-b border-gray-300 pb-6">
@@ -33,13 +46,13 @@ function CartItem({ brand, name, size, price, img, alt, amount }) {
               {`UK : ${size}`}
             </div>
             <div className="flex gap-2 bg-gray-100 rounded items-center justify-center">
-              <button onClick={decreaseProductCounter}>
+              <div onClick={decreaseProductCounter}>
                 {icons.productMinusIconCart}
-              </button>
-              <div className="bg-white rounded px-1">{amount}</div>
-              <button onClick={increaseProductCounter}>
+              </div>
+              <div className="bg-white rounded px-1">{productCounter}</div>
+              <div onClick={increaseProductCounter}>
                 {icons.productPlusIconCart}
-              </button>
+              </div>
             </div>
           </div>
         </div>
