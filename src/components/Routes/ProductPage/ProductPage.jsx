@@ -18,7 +18,7 @@ function ProductShowcase({
   handleDetailsSection,
 }) {
 
-  const { cartItems, setCartItems } = useContext(CartContext);
+  const { cartItems, setCartItems, totalPrice, setTotalPrice } = useContext(CartContext);
 
   function SizeButton({ size, isSelected, onClick }) {
     return (
@@ -43,6 +43,7 @@ function ProductShowcase({
       imgAlt: state.alt,
     }
     setCartItems([...cartItems, product])
+    setTotalPrice(totalPrice + state.price);
   }
 
   return (

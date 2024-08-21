@@ -5,7 +5,7 @@ import { CartContext } from '../CartProvider';
 
 
 function CartDialog({ isOpen, onClose }) {
-  const { cartItems } = useContext(CartContext);
+  const { cartItems, totalPrice } = useContext(CartContext);
   
   if (!isOpen) return null;
 
@@ -33,6 +33,14 @@ function CartDialog({ isOpen, onClose }) {
               alt={item.imgAlt}
             />
           ))}
+        </div>
+        <div>
+          <div>
+            {totalPrice}
+          </div>
+          <div>
+          
+          </div>
         </div>
       </dialog>
     </>
