@@ -1,23 +1,40 @@
 import icons from "../../assets/icons/icons";
 import CartItem from "./CartItem";
-import { useContext } from 'react';
-import { CartContext } from '../CartProvider';
-
+import { useContext } from "react";
+import { useEffect } from "react";
+import { CartContext } from "../CartProvider";
 
 function CartDialog({ isOpen, onClose }) {
   const { cartItems, totalPrice } = useContext(CartContext);
-  
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
+
   if (!isOpen) return null;
+
+  const handleDialogClick = (e) => {
+    e.stopPropagation(); // Prevent click inside the dialog from closing it
+  };
 
   return (
     <>
-      <div className="fixed inset-0 bg-black opacity-50 z-10"></div>
+      <div className="fixed inset-0 bg-black opacity-50 z-10" onClick={onClose}></div>
       <dialog
         open
-        className="fixed top-0 right-0 h-screen w-[29rem] z-10 bg-white shadow-lg m-0"
+        className="fixed top-0 right-0 h-screen w-[29rem] z-10 bg-white shadow-lg m-0 flex flex-col p-4"
         style={{ inset: "0 0 0 auto" }}
+        onClick={onClose}
       >
-        <div className="flex flex-col p-4 gap-6">
+        <div className="flex flex-col gap-6 overflow-y-auto max-h-[90%]" onClick={handleDialogClick}>
           <div className="flex justify-between">
             <h2 className="text-2xl font-bold">Your Cart</h2>
             <button onClick={onClose}>{icons.closeIcon}</button>
@@ -34,18 +51,22 @@ function CartDialog({ isOpen, onClose }) {
             />
           ))}
         </div>
-        <div>
-          <div>
-            {totalPrice}
+        <div className="grid grid-cols-5 grid-rows-1 justify-end items-end w-full mt-auto pt-4 border-t border-gray-200">
+          <div className="col-span-2 flex flex-col text-xl">
+            <div className="font-bold">
+              {`$${totalPrice}.00`}
+            </div>
+            <div className="text-sm font-semibold text-gray-500">
+              Inclusive of all taxes
+            </div>
           </div>
-          <div>
-          
-          </div>
+          <button className="col-span-3 bg-black text-white p-2 font-bold text-xl">
+            CHECKOUT
+          </button>
         </div>
       </dialog>
     </>
   );
 }
-
 
 export default CartDialog;
