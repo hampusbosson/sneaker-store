@@ -38,6 +38,9 @@ function ProductShowcase({
       brand: state.brand,
       name: state.name,
       price: state.price,
+      size: selectedSize,
+      img: state.imgSrc,
+      imgAlt: state.alt,
     }
     setCartItems([...cartItems, product])
   }
