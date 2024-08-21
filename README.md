@@ -1,8 +1,12 @@
-# React + Vite
+TODO:
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+21/08-24
+START: 12.00
+- [x] Style cartDialog content 13:30
+- [x] Add logic for totalAmount and item counters 16:00
+- [ ] Render content for collection pages
+- [ ] Style collection pages
+- [ ] Add sidebar menu for mobile
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
