@@ -1,22 +1,23 @@
+import { CartProvider } from '../CartProvider';
 import App from "../../App";
 import ErrorPage from "./ErrorPage";
 import ProductPage from "./ProductPage/ProductPage";
-import Collections from "./Collections/Collections"
+import Collections from "./Collections/Collections";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-const routes = [
-  {
-    path: "/",
-    element: <App />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: "product/:item",
-    element: <ProductPage />,
-  },
-  {
-    path: "collections/:collection",
-    element: <Collections />,
-  }
-];
+function AppRoutes() {
+  return (
+    <CartProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<App />} />
+          <Route path="product/:item" element={<ProductPage />} />
+          <Route path="collections/:collection" element={<Collections />} />
+          <Route path="*" element={<ErrorPage />} />
+        </Routes>
+      </BrowserRouter>
+    </CartProvider>
+  );
+}
 
-export default routes;
+export default AppRoutes;
