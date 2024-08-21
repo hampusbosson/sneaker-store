@@ -3,6 +3,8 @@ import { useState } from 'react';
 import CartDialog from '../Cart/CartDialog';
 
 function CartButton() {
+  const [cartCount, setCartCount] = useState(0);
+
   const handleClick = () => {
     setCartOpen(true)
   }
@@ -16,9 +18,9 @@ function CartButton() {
   return (
     <>
       <button onClick={handleClick}>
-        {icons.cartIcon}
+        {icons.cartIcon(cartCount)}
       </button>
-      <CartDialog isOpen={cartOpen} onClose={handleClose}/>
+      <CartDialog isOpen={cartOpen} onClose={handleClose} cartCount={cartCount} setCartCount={setCartCount}/>
     </>
   );
 }

@@ -3,8 +3,13 @@ import CartItem from "./CartItem";
 import { useContext, useEffect } from "react";
 import { CartContext } from "../CartProvider";
 
-function CartDialog({ isOpen, onClose }) {
+function CartDialog({ isOpen, onClose, cartCount, setCartCount }) {
   const { cartItems, totalPrice } = useContext(CartContext);
+
+  useEffect(() => {
+    const totalItems = cartItems.reduce((acc, item) => acc + item.amount, 0); 
+    setCartCount(totalItems);
+  }, [cartItems, setCartCount]);
 
   useEffect(() => {
     if (isOpen) {
