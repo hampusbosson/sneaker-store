@@ -1,6 +1,6 @@
 import icons from '../../assets/icons/icons';
 import { useState } from 'react';
-import CartDialog from './CartDialog';
+import CartDialog from '../Cart/CartDialog';
 
 function CartButton() {
   const handleClick = () => {
@@ -18,7 +18,7 @@ function CartButton() {
       <button onClick={handleClick}>
         {icons.cartIcon}
       </button>
-      <CartDialog isOpen={cartOpen} onClose={handleClose} />
+      <CartDialog isOpen={cartOpen} onClose={handleClose}/>
     </>
   );
 }

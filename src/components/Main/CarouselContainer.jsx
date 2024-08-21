@@ -4,7 +4,7 @@ import icons from "../../assets/icons/icons";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-function CarouselContainer({title, data, error, loading}) {
+function CarouselContainer({title, data, error, loading }) {
   function SampleNextArrow(props) {
     const { className, style, onClick } = props;
     return (
