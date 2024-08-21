@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import icons from "../../../assets/icons/icons";
 import { searchSneakers } from "../../../api";
 import CarouselButton from "../../Main/CarouselButton";
+import { useContext } from "react";
+import { CartContext } from "../../CartProvider";
 
 
 function ProductShowcase({
@@ -15,6 +17,9 @@ function ProductShowcase({
   handleAboutSection,
   handleDetailsSection,
 }) {
+
+  const { cartItems, setCartItems } = useContext(CartContext);
+
   function SizeButton({ size, isSelected, onClick }) {
     return (
       <button
@@ -26,6 +31,15 @@ function ProductShowcase({
         {size}
       </button>
     );
+  }
+
+  const addToCart = () => {
+    const product = {
+      brand: state.brand,
+      name: state.name,
+      price: state.price,
+    }
+    setCartItems([...cartItems, product])
   }
 
   return (
@@ -58,7 +72,7 @@ function ProductShowcase({
             />
           ))}
         </div>
-        <button className="bg-black text-white mt-5 h-16 font-semibold text-lg">
+        <button className="bg-black text-white mt-5 h-16 font-semibold text-lg" onClick={addToCart}>
           Add to cart
         </button>
         <button
