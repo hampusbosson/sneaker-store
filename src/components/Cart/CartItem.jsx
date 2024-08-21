@@ -1,7 +1,7 @@
 import icons from "../../assets/icons/icons";
 import { useState } from "react";
 
-function CartItem({ brand, name, size, price, img, alt }) {
+function CartItem({ brand, name, size, price, img, alt, amount }) {
   const [productCounter, setProductCounter] = useState("0");
 
   const increaseProductCounter = () => {
@@ -36,7 +36,7 @@ function CartItem({ brand, name, size, price, img, alt }) {
               <button onClick={decreaseProductCounter}>
                 {icons.productMinusIconCart}
               </button>
-              <div className="bg-white rounded px-1">{productCounter}</div>
+              <div className="bg-white rounded px-1">{amount}</div>
               <button onClick={increaseProductCounter}>
                 {icons.productPlusIconCart}
               </button>

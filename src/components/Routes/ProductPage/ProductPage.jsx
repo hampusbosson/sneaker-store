@@ -7,7 +7,6 @@ import CarouselButton from "../../Main/CarouselButton";
 import { useContext } from "react";
 import { CartContext } from "../../CartProvider";
 
-
 function ProductShowcase({
   state,
   selectedSize,
@@ -17,8 +16,8 @@ function ProductShowcase({
   handleAboutSection,
   handleDetailsSection,
 }) {
-
-  const { cartItems, setCartItems, totalPrice, setTotalPrice } = useContext(CartContext);
+  const { cartItems, setCartItems, totalPrice, setTotalPrice } =
+    useContext(CartContext);
 
   function SizeButton({ size, isSelected, onClick }) {
     return (
@@ -33,18 +32,36 @@ function ProductShowcase({
     );
   }
 
-  const addToCart = () => {
-    const product = {
-      brand: state.brand,
-      name: state.name,
-      price: state.price,
-      size: selectedSize,
-      img: state.imgSrc,
-      imgAlt: state.alt,
+  const [sneakerAmount, setSneakerAmount] = useState(1);
+
+  const addToCart = (name) => {
+    const existingItem = cartItems.find(item => item.name === name && item.size === selectedSize);
+  
+    if (existingItem) {
+      // If the item already exists, update its amount
+      const updatedCartItems = cartItems.map(item => 
+        item.name === name && item.size === selectedSize
+          ? { ...item, amount: item.amount + 1 }
+          : item
+      );
+      setCartItems(updatedCartItems);
+    } else {
+      // If the item doesn't exist, add it to the cart
+      const product = {
+        brand: state.brand,
+        name: state.name,
+        price: state.price,
+        size: selectedSize,
+        img: state.imgSrc,
+        imgAlt: state.alt,
+        amount: sneakerAmount,
+      };
+      setCartItems([...cartItems, product]);
     }
-    setCartItems([...cartItems, product])
+  
+    // Update the total price
     setTotalPrice(totalPrice + state.price);
-  }
+  };
 
   return (
     <div className="lg:flex lg:flex-row lg:gap-20 lg:justify-between grid gap-8">
@@ -76,7 +93,10 @@ function ProductShowcase({
             />
           ))}
         </div>
-        <button className="bg-black text-white mt-5 h-16 font-semibold text-lg" onClick={addToCart}>
+        <button
+          className="bg-black text-white mt-5 h-16 font-semibold text-lg"
+          onClick={() => addToCart(state.name)}
+        >
           Add to cart
         </button>
         <button
@@ -142,7 +162,7 @@ function getRandomSneakers(sneakers, count) {
   return shuffled.slice(0, count);
 }
 
-function YouMayLikeSection({shoeName }) {
+function YouMayLikeSection({ shoeName }) {
   const [recommendedSneakers, setRecommendedSneakers] = useState([]);
   const [recommendedLoading, setRecommendedLoading] = useState(true);
   const [recommendedError, setRecommendedError] = useState(null);
@@ -161,13 +181,12 @@ function YouMayLikeSection({shoeName }) {
   }, [shoeName]);
 
   if (recommendedLoading) {
-    return <div>Loading...</div>
+    return <div>Loading...</div>;
   }
 
   if (recommendedError) {
-    return <div>Oops! Couldnt fetch data.</div>
+    return <div>Oops! Couldnt fetch data.</div>;
   }
-
 
   return (
     <div className="lg:w-[80%] w-[90%]">
@@ -175,21 +194,21 @@ function YouMayLikeSection({shoeName }) {
         You may also like
       </h1>
       <div className="grid lg:grid-cols-4 lg:grid-rows-1 md:grid-cols-2 md:grid-rows-2 grid-cols-2 grid-rows-2">
-      {recommendedSneakers.map((sneaker) => (
-        <div key={sneaker._id} className="p-4">
-          <CarouselButton
-            imgSrc={sneaker.thumbnail}
-            alt={sneaker.shoeName}
-            brand={sneaker.brand}
-            name={sneaker.make}
-            price={sneaker.lowestResellPrice.stockX}
-            description={sneaker.description}
-            releaseDate={sneaker.releaseDate}
-            colorWay={sneaker.colorway}
-            articleCode={sneaker.styleID}
-          />
-        </div>
-      ))}
+        {recommendedSneakers.map((sneaker) => (
+          <div key={sneaker._id} className="p-4">
+            <CarouselButton
+              imgSrc={sneaker.thumbnail}
+              alt={sneaker.shoeName}
+              brand={sneaker.brand}
+              name={sneaker.make}
+              price={sneaker.lowestResellPrice.stockX}
+              description={sneaker.description}
+              releaseDate={sneaker.releaseDate}
+              colorWay={sneaker.colorway}
+              articleCode={sneaker.styleID}
+            />
+          </div>
+        ))}
       </div>
     </div>
   );

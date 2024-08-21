@@ -48,6 +48,7 @@ function CartDialog({ isOpen, onClose }) {
               price={item.price} 
               img={item.img}
               alt={item.imgAlt}
+              amount={item.amount}
             />
           ))}
         </div>
