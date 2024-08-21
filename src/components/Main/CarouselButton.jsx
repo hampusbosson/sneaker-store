@@ -17,7 +17,7 @@ function CarouselButton({ imgSrc, alt, brand, name, price, description, releaseD
             <div className="flex flex-col items-start text-left min-h-28 mt-8">
                 <p className="text-gray-700 text-lg">{brand}</p>
                 <p className="text-black font-bold text-sm tracking-tight">{name}</p>
-                <p className="text-black text-lg mt-1">{`$${price}`}</p>
+                <p className="text-black text-lg mt-1">{`$${price}.00`}</p>
             </div>
             <div className="self-start mt-8">
                 {icons.plusIcon}

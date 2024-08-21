@@ -60,7 +60,7 @@ function ProductShowcase({
         </div>
         <div className="mt-2">
           <p className="text-3xl font-bold">{state.name}</p>
-          <p className="font-semibold text-xl mt-0.5">{`$${state.price}`}</p>
+          <p className="font-semibold text-xl mt-0.5">{`$${state.price}.00`}</p>
         </div>
         <div className="flex gap-6 mt-6">
           <p className="font-bold text-lg">Shoe Size (UK)</p>

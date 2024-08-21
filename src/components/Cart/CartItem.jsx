@@ -27,7 +27,7 @@ function CartItem({ brand, name, size, price, img, alt }) {
         <div className="flex flex-col items-start w-full">
           <div className="text-gray-500 font-bold text-sm">{brand}</div>
           <div className="font-bold text-lg mt-1">{name}</div>
-          <div className="font-bold text-sm">{`$${price}`}</div>
+          <div className="font-bold text-sm">{`$${price}.00`}</div>
           <div className="flex justify-between w-full">
             <div className="mt-1 bg-gray-100 rounded px-2 pb-[0.15rem] pt-[0.15rem] font-bold">
               {`UK : ${size}`}
