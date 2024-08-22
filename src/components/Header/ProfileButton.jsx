@@ -1,28 +1,36 @@
 import icons from '../../assets/icons/icons';
 import MobileSidebar from './MobileSidebar';
 import { useState } from 'react';
+import { useNavigate } from "react-router-dom";
+
 
 function ProfileButton() {
 
-  const handleClick = () => {
-    setCartOpen(true)
+  const navigate = useNavigate();
+
+  const handleUserClick = () => {
+    navigate('account/login');
+  } 
+
+  const handleMenuClick = () => {
+    setMenuOpen(true)
   }
 
-  const handleClose = () => {
-    setCartOpen(false);
+  const handleMenuClose = () => {
+    setMenuOpen(false);
   };
 
-  const [cartOpen, setCartOpen] = useState(null);
+  const [menuOpen, setMenuOpen] = useState(null);
 
     return (
       <div className="profile-btn w-10 h-10 flex items-center justify-center">
-        <button className='hidden lg:block'>
+        <button className='hidden lg:block' onClick={handleUserClick}>
           {icons.userIcon}
         </button>
-        <button className="block lg:hidden" onClick={handleClick}>
+        <button className="block lg:hidden" onClick={handleMenuClick}>
           {icons.barsIcon}
         </button>
-        <MobileSidebar isOpen={cartOpen} onClose={handleClose}/>
+        <MobileSidebar isOpen={menuOpen} onClose={handleMenuClose}/>
       </div>
     );
   }
