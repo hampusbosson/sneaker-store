@@ -6,7 +6,7 @@ function LoginPage() {
       <Header />
       <div className="w-full flex flex-col justify-center items-center mt-12">
         <div className="flex flex-col justify-center items-center gap-2">
-          <h1 className="text-black text-5xl font-bold">Welcome Back!</h1>
+          <h1 className="text-black text-4xl md:text-5xl font-bold">Welcome Back!</h1>
           <h2 className="text-gray-500 font-semibold">Please sign-in with</h2>
         </div>
         <input
