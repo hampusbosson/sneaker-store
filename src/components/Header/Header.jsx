@@ -20,7 +20,7 @@ function Header() {
           </div>
         </div>
       </div>
-      <HeaderContentList />
+      <HeaderContentList/>
     </div>
   );
 }
