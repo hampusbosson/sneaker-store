@@ -1,14 +1,28 @@
 import icons from '../../assets/icons/icons';
+import MobileSidebar from './MobileSidebar';
+import { useState } from 'react';
 
 function ProfileButton() {
+
+  const handleClick = () => {
+    setCartOpen(true)
+  }
+
+  const handleClose = () => {
+    setCartOpen(false);
+  };
+
+  const [cartOpen, setCartOpen] = useState(null);
+
     return (
       <div className="profile-btn w-10 h-10 flex items-center justify-center">
-        <div className='hidden lg:block'>
+        <button className='hidden lg:block'>
           {icons.userIcon}
-        </div>
-        <div className="block lg:hidden">
+        </button>
+        <button className="block lg:hidden" onClick={handleClick}>
           {icons.barsIcon}
-        </div>
+        </button>
+        <MobileSidebar isOpen={cartOpen} onClose={handleClose}/>
       </div>
     );
   }
