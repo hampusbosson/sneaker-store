@@ -9,7 +9,7 @@ function ProfileButton() {
   const navigate = useNavigate();
 
   const handleUserClick = () => {
-    navigate('account/login');
+    navigate('/account/login');
   } 
 
   const handleMenuClick = () => {
