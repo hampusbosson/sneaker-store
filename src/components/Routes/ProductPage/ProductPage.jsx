@@ -21,7 +21,6 @@ function ProductShowcase({
 
   let sneakerAmount = 1; 
 
-
   function SizeButton({ size, isSelected, onClick }) {
     return (
       <button
