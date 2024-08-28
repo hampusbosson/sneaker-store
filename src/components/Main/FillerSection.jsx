@@ -24,6 +24,9 @@ function FillerSection({ data, error, loading }) {
           gridClass={
             "md:order-2 order-1 md:row-span-2 md:col-span-1 row-span-1 col-span-2 md:mx-2"
           }
+          name={'new balance'}
+          url={'new-balance'}
+          title={'New Balance 574'}
         />
         <div className="grid grid-cols-2 grid-rows-2 md:order-1 order-2 md:row-span-2 md:col-span-1 row-span-1 col-span-2 gap-8 mx-1">
           {data.map((sneaker) => (
