@@ -4,6 +4,7 @@ import CartDialog from '../Cart/CartDialog';
 
 function CartButton() {
   const [cartCount, setCartCount] = useState(0);
+  const [cartIsEmpty, setCartIsEmpty] = useState(true);
 
   const handleClick = () => {
     setCartOpen(true)
@@ -20,7 +21,7 @@ function CartButton() {
       <button onClick={handleClick}>
         {icons.cartIcon(cartCount)}
       </button>
-      <CartDialog isOpen={cartOpen} onClose={handleClose} cartCount={cartCount} setCartCount={setCartCount}/>
+      <CartDialog isOpen={cartOpen} onClose={handleClose} cartCount={cartCount} setCartCount={setCartCount} isEmpty={cartIsEmpty} setIsEmpty={setCartIsEmpty}/>
     </>
   );
 }

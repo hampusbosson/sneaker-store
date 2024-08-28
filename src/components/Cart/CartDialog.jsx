@@ -3,13 +3,18 @@ import CartItem from "./CartItem";
 import { useContext, useEffect } from "react";
 import { CartContext } from "../CartProvider";
 
-function CartDialog({ isOpen, onClose, cartCount, setCartCount }) {
+function CartDialog({ isOpen, onClose, setCartCount, isEmpty, setIsEmpty }) {
   const { cartItems, totalPrice } = useContext(CartContext);
 
   useEffect(() => {
     const totalItems = cartItems.reduce((acc, item) => acc + item.amount, 0); 
     setCartCount(totalItems);
-  }, [cartItems, setCartCount]);
+    if (totalItems === 0) {
+      setIsEmpty(true);
+    } else {
+      setIsEmpty(false)
+    }
+  }, [cartItems, setCartCount, setIsEmpty]);
 
   useEffect(() => {
     if (isOpen) {
@@ -23,8 +28,6 @@ function CartDialog({ isOpen, onClose, cartCount, setCartCount }) {
     };
   }, [isOpen]);
 
-  if (!isOpen) return null;
-
   const handleOverlayClick = () => {
     onClose();
   };
@@ -32,6 +35,8 @@ function CartDialog({ isOpen, onClose, cartCount, setCartCount }) {
   const handleDialogClick = (e) => {
     e.stopPropagation(); // Prevent click inside the dialog from closing it
   };
+
+  if (!isOpen) return null;
 
   return (
     <>
@@ -47,32 +52,41 @@ function CartDialog({ isOpen, onClose, cartCount, setCartCount }) {
             <h2 className="text-2xl font-bold">Your Cart</h2>
             <button onClick={onClose}>{icons.closeIcon}</button>
           </div>
-          {cartItems.map((item, index) => (
-            <CartItem 
-              key={index}
-              brand={item.brand} 
-              name={item.name} 
-              size={item.size}
-              price={item.price} 
-              img={item.img}
-              alt={item.imgAlt}
-              amount={item.amount}
-            />
-          ))}
+          {isEmpty ? (
+            <div className="mt-64 flex flex-col gap-5 items-center">
+            <div className="text-black text-3xl font-bold">Your cart is empty.</div>
+            <button className="text-white bg-black w-[13rem] p-2 font-semibold" onClick={onClose}>Continue Shopping</button>
+            </div>
+          ) : (
+            cartItems.map((item, index) => (
+              <CartItem 
+                key={index}
+                brand={item.brand} 
+                name={item.name} 
+                size={item.size}
+                price={item.price} 
+                img={item.img}
+                alt={item.imgAlt}
+                amount={item.amount}
+              />
+            ))
+          )}
         </div>
-        <div className="grid grid-cols-5 grid-rows-1 justify-end items-end w-full mt-auto pt-4 border-t border-gray-200">
-          <div className="col-span-2 flex flex-col text-xl">
-            <div className="font-bold">
-              {`$${totalPrice}.00`}
+        {!isEmpty && (
+          <div className="grid grid-cols-5 grid-rows-1 justify-end items-end w-full mt-auto pt-4 border-t border-gray-200">
+            <div className="col-span-2 flex flex-col text-xl">
+              <div className="font-bold">
+                {`$${totalPrice}.00`}
+              </div>
+              <div className="text-sm font-semibold text-gray-500">
+                Inclusive of all taxes
+              </div>
             </div>
-            <div className="text-sm font-semibold text-gray-500">
-              Inclusive of all taxes
-            </div>
+            <button className="col-span-3 bg-black text-white p-2 font-bold text-xl">
+              CHECKOUT
+            </button>
           </div>
-          <button className="col-span-3 bg-black text-white p-2 font-bold text-xl">
-            CHECKOUT
-          </button>
-        </div>
+        )}
       </dialog>
     </>
   );
