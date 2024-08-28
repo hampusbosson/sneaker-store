@@ -2,57 +2,23 @@ import CarouselContainer from "./CarouselContainer";
 import ShowcaseContainer from "./ShowcaseContainer";
 import FillerSection from "./FillerSection";
 import { getMostPopularSneakers, searchSneakers } from "../../api";
-import { useState, useEffect } from "react";
+import { useQuery } from "react-query";
 
 function MainContent() {
-  const [popularSneakers, setPopularSneakers] = useState([]);
-  const [popularLoading, setPopularLoading] = useState(true);
-  const [popularError, setPopularError] = useState(null);
+  const { data: popularSneakers, error: popularError, isLoading: popularLoading } = useQuery(
+    ['popularSneakers'],
+    getMostPopularSneakers
+  );
 
-  const [recommendedSneakers, setRecommendedSneakers] = useState([]);
-  const [recommendedLoading, setRecommendedLoading] = useState(true);
-  const [recommendedError, setRecommendedError] = useState(null);
+  const { data: recommendedSneakers, error: recommendedError, isLoading: recommendedLoading } = useQuery(
+    ['recommendedSneakers'],
+    () => searchSneakers("2024", 10)
+  );
 
-  const [newBalanceSneakers, setNewBalanceSneakers] = useState([]);
-  const [newBalanceError, setNewBalanceError] = useState(null);
-  const [newBalanceLoading, setNewBalanceLoading] = useState(null);
-
-  useEffect(() => {
-    getMostPopularSneakers()
-      .then((data) => {
-        setPopularSneakers(data);
-        setPopularLoading(false);
-      })
-      .catch((error) => {
-        setPopularError(error);
-        setPopularLoading(false);
-      });
-  }, []);
-
-  useEffect(() => {
-    searchSneakers("2024", 10)
-      .then((data) => {
-        console.log(data);
-        setRecommendedSneakers(data);
-        setRecommendedLoading(false);
-      })
-      .catch((error) => {
-        setRecommendedError(error);
-        setRecommendedLoading(false);
-      });
-  }, []);
-
-  useEffect(() => {
-    searchSneakers("new balance 574", 4)
-      .then((data) => {
-        setNewBalanceSneakers(data);
-        setNewBalanceLoading(false);
-      })
-      .catch((error) => {
-        setNewBalanceError(error);
-        setNewBalanceLoading(false);
-      });
-  }, []);
+  const { data: newBalanceSneakers, error: newBalanceError, isLoading: newBalanceLoading } = useQuery(
+    ['newBalanceSneakers'],
+    () => searchSneakers("new balance 574", 4)
+  );
 
   return (
     <div className="flex flex-col gap-12">

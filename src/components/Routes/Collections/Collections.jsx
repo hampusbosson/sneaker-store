@@ -1,5 +1,5 @@
 import Layout from "../../../Layout";
-import { useState, useEffect } from "react";
+import { useQuery } from 'react-query';
 import { useLocation } from "react-router-dom";
 import CarouselButton from "../../Main/CarouselButton";
 import { searchSneakers } from "../../../api";
@@ -7,25 +7,13 @@ import { searchSneakers } from "../../../api";
 function Collections() {
   const { state } = useLocation();
 
-  const [sneakers, setSneakers] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const { data: sneakers, error, isLoading } = useQuery(
+    ['sneakers', state.data, state.limit],
+    () => searchSneakers(state.data, state.limit)
+  );
 
-  useEffect(() => {
-    searchSneakers(state.data, state.limit)
-      .then((data) => {
-        console.log(data);
-        setSneakers(data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        setError(error);
-        setLoading(false);
-      });
-  }, [state.data, state.limit]);
-
-  if (loading) {
-    return <div className="text-center mt-4">Loading...</div>;
+  if (isLoading) {
+    return <div className="text-center mt-4 text-black">Loading...</div>;
   }
 
   if (error) {
@@ -38,11 +26,11 @@ function Collections() {
 
   return (
     <Layout>
-      <div className="text-black">
-        <h1>{state.title}</h1>
-        <div>
+      <div className="text-black xl:mx-[10rem] md:mx-[5rem] mx-[1rem] flex flex-col gap-4">
+        <h1 className="font-bold text-4xl ml-6">{state.title}</h1>
+        <div className="grid lg:grid-cols-3 grid-cols-2">
         {sneakers.map((sneaker) => (
-              <div key={sneaker._id} className="p-4">
+              <div key={sneaker._id} className="xl:p-6 md:p-4 p-2">
                 <CarouselButton
                   imgSrc={sneaker.thumbnail}
                   alt={sneaker.shoeName}
