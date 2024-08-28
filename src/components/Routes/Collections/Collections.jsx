@@ -29,7 +29,7 @@ function Collections() {
 
   return (
     <Layout>
-      <div className="text-black xl:mx-[10rem] md:mx-[5rem] mx-[1rem] flex flex-col gap-4">
+      <div className="text-black 2xl:mx-[12rem] xl:mx-[5rem] md:mx-[5rem] mx-[1rem] flex flex-col gap-4">
         <h1 className="font-bold text-4xl ml-6">{state.title}</h1>
         <div className="grid lg:grid-cols-3 grid-cols-2">
           {sneakers.map((sneaker) => (
