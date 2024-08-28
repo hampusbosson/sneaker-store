@@ -4,7 +4,7 @@ import newBalanceImage from "../../assets/images/new-balance.webp";
 
 function FillerSection({ data, error, loading }) {
   if (loading) {
-    return <div className="text-center mt-4">Loading...</div>;
+    return <div className="text-center mt-4 text-black">Loading...</div>;
   }
 
   if (error) {
