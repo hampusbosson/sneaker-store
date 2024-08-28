@@ -72,7 +72,7 @@ function ProductShowcase({
         alt={state.alt}
         className="w-[26rem] h-[17rem] shadow xl:w-[38rem] xl:h-[27rem] sm:w-[33rem] sm:h-[23rem]"
       />
-      <div className="flex flex-col w-full">
+      <div className="flex flex-col max-w-[25rem]">
         <div className="flex justify-between">
           <p className="text-gray-800 text-xl">{state.brand}</p>
           {icons.productHeartIcon}
@@ -83,7 +83,7 @@ function ProductShowcase({
         </div>
         <div className="flex gap-6 mt-6">
           <p className="font-bold text-lg">Shoe Size (UK)</p>
-          <p className="font-semibold underline text-lg">Size Chart</p>
+          <button className="font-semibold underline text-lg">Size Chart</button>
         </div>
         <div className="flex gap-2 mt-3">
           {["4", "5", "6", "7", "8"].map((size) => (
