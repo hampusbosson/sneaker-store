@@ -4,13 +4,18 @@ import icons from "../../assets/icons/icons";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-function CarouselContainer({title, data, error, loading }) {
+function CarouselContainer({ title, data, error, loading }) {
   function SampleNextArrow(props) {
     const { className, style, onClick } = props;
     return (
       <div
         className={className}
-        style={{ ...style, display: "block", marginTop: '-40px', marginRight: '10px' }}
+        style={{
+          ...style,
+          display: "block",
+          marginTop: "-40px",
+          marginRight: "10px",
+        }}
         onClick={onClick}
       >
         {icons.chevronRight}
@@ -23,7 +28,7 @@ function CarouselContainer({title, data, error, loading }) {
     return (
       <div
         className={className}
-        style={{ ...style, display: "block", marginTop: '-40px' }}
+        style={{ ...style, display: "block", marginTop: "-40px" }}
         onClick={onClick}
       >
         {icons.chevronLeft}
@@ -34,11 +39,7 @@ function CarouselContainer({title, data, error, loading }) {
   function HideArrows(props) {
     const { className, style } = props;
     return (
-      <div
-        className={className}
-        style={{ ...style, display: "hidden" }}
-      >
-      </div>
+      <div className={className} style={{ ...style, display: "hidden" }}></div>
     );
   }
 
@@ -57,8 +58,8 @@ function CarouselContainer({title, data, error, loading }) {
           slidesToShow: 3,
           slidesToScroll: 3,
           infinite: true,
-          dots: false
-        }
+          dots: false,
+        },
       },
       {
         breakpoint: 700,
@@ -68,9 +69,9 @@ function CarouselContainer({title, data, error, loading }) {
           initialSlide: 2,
           nextArrow: <HideArrows />,
           prevArrow: <HideArrows />,
-        }
+        },
       },
-    ]
+    ],
   };
 
   if (loading) {
@@ -87,7 +88,9 @@ function CarouselContainer({title, data, error, loading }) {
 
   return (
     <div className="flex flex-col justify-center 2xl:px-44 sm:px-8 px-0 2xl:mb-0 sm:-mb-8 -mb-8">
-      <h2 className="text-black 2xl:ml-[2rem] ml-[2rem] 2xl:text-4xl text-3xl font-bold">{title}</h2>
+      <h2 className="text-black 2xl:ml-[2rem] ml-[2rem] 2xl:text-4xl text-3xl font-bold">
+        {title}
+      </h2>
       <div>
         <div className="w-full">
           <Slider {...sliderSettings}>

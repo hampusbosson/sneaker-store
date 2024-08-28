@@ -1,10 +1,9 @@
-import ProfileButton from './ProfileButton';
-import SearchInput from './SearchInput';
-import WatchListButton from './WatchListButton';
-import CartButton from './CartButton'
-import HomeButton from './HomeButton';
-import HeaderContentList from './HeaderContentList/HeaderContentList';
-
+import ProfileButton from "./ProfileButton";
+import SearchInput from "./SearchInput";
+import WatchListButton from "./WatchListButton";
+import CartButton from "./CartButton";
+import HomeButton from "./HomeButton";
+import HeaderContentList from "./HeaderContentList/HeaderContentList";
 
 function Header() {
   return (
@@ -14,13 +13,13 @@ function Header() {
         <HomeButton />
         <div className="flex flex-row gap-4 items-center">
           <SearchInput />
-          <div className='flex gap-4'>
+          <div className="flex gap-4">
             <WatchListButton />
             <CartButton />
           </div>
         </div>
       </div>
-      <HeaderContentList/>
+      <HeaderContentList />
     </div>
   );
 }

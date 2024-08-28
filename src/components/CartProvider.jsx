@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react';
+import { createContext, useState } from "react";
 
 export const CartContext = createContext();
 
@@ -7,10 +7,12 @@ export function CartProvider({ children }) {
   const [totalPrice, setTotalPrice] = useState(0);
 
   return (
-    <CartContext.Provider value={{ cartItems, setCartItems, totalPrice, setTotalPrice }}>
+    <CartContext.Provider
+      value={{ cartItems, setCartItems, totalPrice, setTotalPrice }}
+    >
       {children}
     </CartContext.Provider>
   );
 }
 
-export default CartProvider
+export default CartProvider;

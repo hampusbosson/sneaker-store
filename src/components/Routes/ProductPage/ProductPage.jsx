@@ -19,7 +19,7 @@ function ProductShowcase({
   const { cartItems, setCartItems, totalPrice, setTotalPrice } =
     useContext(CartContext);
 
-  let sneakerAmount = 1; 
+  let sneakerAmount = 1;
 
   function SizeButton({ size, isSelected, onClick }) {
     return (
@@ -34,16 +34,17 @@ function ProductShowcase({
     );
   }
 
-
   const addToCart = (articleCode) => {
-    const existingItem = cartItems.find(item => item.articleCode === articleCode && item.size === selectedSize);
-  
+    const existingItem = cartItems.find(
+      (item) => item.articleCode === articleCode && item.size === selectedSize,
+    );
+
     if (existingItem) {
       // If the item already exists, update its amount
-      const updatedCartItems = cartItems.map(item => 
+      const updatedCartItems = cartItems.map((item) =>
         item.articleCode === articleCode && item.size === selectedSize
           ? { ...item, amount: item.amount + sneakerAmount }
-          : item
+          : item,
       );
       setCartItems(updatedCartItems);
     } else {
@@ -56,11 +57,11 @@ function ProductShowcase({
         img: state.imgSrc,
         imgAlt: state.alt,
         amount: sneakerAmount,
-        articleCode: state.articleCode
+        articleCode: state.articleCode,
       };
       setCartItems([...cartItems, product]);
     }
-  
+
     // Update the total price
     setTotalPrice(totalPrice + state.price);
   };
@@ -83,7 +84,9 @@ function ProductShowcase({
         </div>
         <div className="flex gap-6 mt-6">
           <p className="font-bold text-lg">Shoe Size (UK)</p>
-          <button className="font-semibold underline text-lg">Size Chart</button>
+          <button className="font-semibold underline text-lg">
+            Size Chart
+          </button>
         </div>
         <div className="flex gap-2 mt-3">
           {["4", "5", "6", "7", "8"].map((size) => (

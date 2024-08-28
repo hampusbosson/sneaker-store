@@ -7,24 +7,24 @@ function CartDialog({ isOpen, onClose, setCartCount, isEmpty, setIsEmpty }) {
   const { cartItems, totalPrice } = useContext(CartContext);
 
   useEffect(() => {
-    const totalItems = cartItems.reduce((acc, item) => acc + item.amount, 0); 
+    const totalItems = cartItems.reduce((acc, item) => acc + item.amount, 0);
     setCartCount(totalItems);
     if (totalItems === 0) {
       setIsEmpty(true);
     } else {
-      setIsEmpty(false)
+      setIsEmpty(false);
     }
   }, [cartItems, setCartCount, setIsEmpty]);
 
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = '';
+      document.body.style.overflow = "";
     }
 
     return () => {
-      document.body.style.overflow = '';
+      document.body.style.overflow = "";
     };
   }, [isOpen]);
 
@@ -40,7 +40,10 @@ function CartDialog({ isOpen, onClose, setCartCount, isEmpty, setIsEmpty }) {
 
   return (
     <>
-      <div className="fixed inset-0 bg-black opacity-50 z-10" onClick={handleOverlayClick}></div>
+      <div
+        className="fixed inset-0 bg-black opacity-50 z-10"
+        onClick={handleOverlayClick}
+      ></div>
       <dialog
         open
         className="fixed top-0 right-0 h-screen w-[29rem] z-10 bg-white shadow-lg m-0 flex flex-col p-4"
@@ -54,17 +57,24 @@ function CartDialog({ isOpen, onClose, setCartCount, isEmpty, setIsEmpty }) {
           </div>
           {isEmpty ? (
             <div className="mt-64 flex flex-col gap-5 items-center">
-            <div className="text-black text-3xl font-bold">Your cart is empty.</div>
-            <button className="text-white bg-black w-[13rem] p-2 font-semibold" onClick={onClose}>Continue Shopping</button>
+              <div className="text-black text-3xl font-bold">
+                Your cart is empty.
+              </div>
+              <button
+                className="text-white bg-black w-[13rem] p-2 font-semibold"
+                onClick={onClose}
+              >
+                Continue Shopping
+              </button>
             </div>
           ) : (
             cartItems.map((item, index) => (
-              <CartItem 
+              <CartItem
                 key={index}
-                brand={item.brand} 
-                name={item.name} 
+                brand={item.brand}
+                name={item.name}
                 size={item.size}
-                price={item.price} 
+                price={item.price}
                 img={item.img}
                 alt={item.imgAlt}
                 amount={item.amount}
@@ -75,9 +85,7 @@ function CartDialog({ isOpen, onClose, setCartCount, isEmpty, setIsEmpty }) {
         {!isEmpty && (
           <div className="grid grid-cols-5 grid-rows-1 justify-end items-end w-full mt-auto pt-4 border-t border-gray-200">
             <div className="col-span-2 flex flex-col text-xl">
-              <div className="font-bold">
-                {`$${totalPrice}.00`}
-              </div>
+              <div className="font-bold">{`$${totalPrice}.00`}</div>
               <div className="text-sm font-semibold text-gray-500">
                 Inclusive of all taxes
               </div>

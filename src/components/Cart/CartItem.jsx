@@ -9,23 +9,23 @@ function CartItem({ brand, name, size, price, img, alt, amount }) {
 
   useEffect(() => {
     // Whenever productCounter changes, update the cart state
-    const updatedCartItems = cartItems.map(item =>
+    const updatedCartItems = cartItems.map((item) =>
       item.name === name && item.size === size
         ? { ...item, amount: productCounter }
-        : item
+        : item,
     );
     setCartItems(updatedCartItems);
   }, [productCounter, name, size, cartItems, setCartItems]);
 
   const increaseProductCounter = () => {
-    setProductCounter(prevCount => prevCount + 1);
-    setTotalPrice(prevTotal => prevTotal + price);
+    setProductCounter((prevCount) => prevCount + 1);
+    setTotalPrice((prevTotal) => prevTotal + price);
   };
 
   const decreaseProductCounter = () => {
     if (productCounter > 0) {
-      setProductCounter(prevCount => prevCount - 1);
-      setTotalPrice(prevTotal => prevTotal - price);
+      setProductCounter((prevCount) => prevCount - 1);
+      setTotalPrice((prevTotal) => prevTotal - price);
     }
   };
 

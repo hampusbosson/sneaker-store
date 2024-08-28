@@ -35,12 +35,12 @@ function MobileSidebar({ isOpen, onClose }) {
           </div>
           <div className="flex flex-col gap-4 p-7 bg-gray-100 -m-4">
             <button className="font-bold flex items-center gap-2">
-                {icons.userIconMobile}
-                Log in
+              {icons.userIconMobile}
+              Log in
             </button>
             <div className="flex gap-4">
-                {icons.facebookIconMobile}
-                {icons.instagramIconMobile}
+              {icons.facebookIconMobile}
+              {icons.instagramIconMobile}
             </div>
           </div>
         </div>

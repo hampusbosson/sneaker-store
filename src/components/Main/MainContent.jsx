@@ -5,19 +5,24 @@ import { getMostPopularSneakers, searchSneakers } from "../../api";
 import { useQuery } from "react-query";
 
 function MainContent() {
-  const { data: popularSneakers, error: popularError, isLoading: popularLoading } = useQuery(
-    ['popularSneakers'],
-    getMostPopularSneakers
-  );
+  const {
+    data: popularSneakers,
+    error: popularError,
+    isLoading: popularLoading,
+  } = useQuery(["popularSneakers"], getMostPopularSneakers);
 
-  const { data: recommendedSneakers, error: recommendedError, isLoading: recommendedLoading } = useQuery(
-    ['recommendedSneakers'],
-    () => searchSneakers("2024", 10)
-  );
+  const {
+    data: recommendedSneakers,
+    error: recommendedError,
+    isLoading: recommendedLoading,
+  } = useQuery(["recommendedSneakers"], () => searchSneakers("2024", 10));
 
-  const { data: newBalanceSneakers, error: newBalanceError, isLoading: newBalanceLoading } = useQuery(
-    ['newBalanceSneakers'],
-    () => searchSneakers("new balance 574", 4)
+  const {
+    data: newBalanceSneakers,
+    error: newBalanceError,
+    isLoading: newBalanceLoading,
+  } = useQuery(["newBalanceSneakers"], () =>
+    searchSneakers("new balance 574", 4),
   );
 
   return (
