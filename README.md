@@ -10,4 +10,4 @@ Sneaker Store is a mock e-commerce user interface designed for browsing, searchi
 - Add and remove sneakers from a shopping cart
 
 ## App Preview:
-![Sneaker Store UI](./assets/screenshot.png)
+![Sneaker Store UI](src/assets/screenshot.png)
