@@ -1,5 +1,3 @@
-// src/api.js
-
 // Fetch the most popular sneakers
 export const getMostPopularSneakers = async () => {
   const response = await fetch("http://localhost:5001/api/sneakers");
